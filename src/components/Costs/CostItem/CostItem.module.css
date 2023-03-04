@@ -1,0 +1,25 @@
+.item {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--color5);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: var(--color2);
+  box-shadow: 0px 2px 7px var(--color4);
+}
+
+.description {
+  font-size: 20px;
+}
+
+.amount {
+  width: 84px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--color3);
+  color: white;
+}
