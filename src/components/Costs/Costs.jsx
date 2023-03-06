@@ -1,8 +1,7 @@
 import CostItem from './CostItem/CostItem'
-import costs from '../../data/costs'
 import style from './Costs.module.css'
 
-const Costs = () => {
+const Costs = ({ costs }) => {
   return (
     <div className={style.costs}>
       {costs.map(({ id, date, description, amount }) => {
