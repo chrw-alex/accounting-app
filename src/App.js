@@ -7,6 +7,7 @@ import costsData from './data/costs'
 const App = () => {
 
   const [costs, setCosts] = useState([...costsData])
+  const [year, setYear] = useState('Все')
 
   const addCost = (descr, amount, date) => {
     const newCost = {
@@ -17,12 +18,25 @@ const App = () => {
     }
 
     setCosts([newCost, ...costs])
+    costsData.push(newCost)
+  }
+
+  const filterCostsByYear = (year) => {
+    if (year === 'Все') {
+      setYear(year)
+      setCosts([...costsData])
+    } else {
+      setYear(year)
+      let filteredCosts
+      filteredCosts = costsData.filter((cost) => cost.date.getFullYear() === +year)
+      setCosts([...filteredCosts])
+    }
   }
 
   return (
     <div className='App'>
       <CostsForm addCost={addCost} />
-      <Costs costs={costs} />
+      <Costs costs={costs} filterCostsByYear={filterCostsByYear} year={year} />
     </div>
   )
 }
