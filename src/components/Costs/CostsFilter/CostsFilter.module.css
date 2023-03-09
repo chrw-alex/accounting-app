@@ -23,3 +23,9 @@
 .select:focus {
   outline: none;
 }
+
+@media (max-width: 576px) {
+  .costsFilter {
+    padding: 10px;
+  }
+}

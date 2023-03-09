@@ -1,3 +1,11 @@
 .costs {
   width: 100%;
 }
+
+.noCosts {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  font-size: 20px;
+  color: var(--color2);
+}

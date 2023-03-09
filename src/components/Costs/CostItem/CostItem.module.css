@@ -23,3 +23,21 @@
   background-color: var(--color3);
   color: white;
 }
+
+@media (max-width: 576px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .description {
+    padding-left: 10px;
+    margin-bottom: 6px;
+  }
+
+  .amount {
+    width: 140px;
+    padding: 6px;
+  }
+}

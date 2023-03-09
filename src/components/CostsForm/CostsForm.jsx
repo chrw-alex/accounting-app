@@ -7,6 +7,11 @@ const CostsForm = ({ addCost }) => {
   const [descr, setDescr] = useState('')
   const [amount, setAmount] = useState('')
   const [date, setDate] = useState('')
+  const [formVisible, setFormVisible] = useState(false)
+
+  const showFormHandler = () => {
+    setFormVisible(true)
+  }
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
@@ -15,17 +20,22 @@ const CostsForm = ({ addCost }) => {
     setDescr('')
     setAmount('')
     setDate('')
+    setFormVisible(false)
   }
 
   const clearFormHandler = () => {
     setDescr('')
     setAmount('')
     setDate('')
+    setFormVisible(false)
   }
 
   return (
     <div className={style.costsForm}>
-      <form className={style.form} onSubmit={onSubmitHandler}>
+      {!formVisible && <div className={style.btnInner}>
+        <button className={style.addCostBtn} onClick={showFormHandler}>Добавить новый расход</button>
+      </div>}
+      {formVisible && <form className={style.form} onSubmit={onSubmitHandler}>
         <div className={style.formInner}>
           <label htmlFor='descr' className={style.label}>Введите название</label>
           <input type='text' id='descr' className={style.input} value={descr} onChange={(e) => setDescr(e.target.value)} />
@@ -36,13 +46,13 @@ const CostsForm = ({ addCost }) => {
         </div>
         <div className={style.formInner}>
           <label htmlFor='date' className={style.label}>Введите дату</label>
-          <input type='date' min='2023-01-01' max='2026-12-31' id='date' className={style.input} value={date} onChange={(e) => setDate(e.target.value)} />
+          <input type='date' min='2022-01-01' max='2026-12-31' id='date' className={style.input} value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
         <div className={style.actions}>
           <button type='submit' className={style.button} >Добавить расход</button>
           <button type='button' className={style.button} onClick={clearFormHandler}>Отмена</button>
         </div>
-      </form>
+      </form>}
     </div>
   )
 }
