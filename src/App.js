@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import Costs from './components/Costs/Costs'
 import CostsForm from './components/CostsForm/CostsForm'
 import costsData from './data/costs'
@@ -26,7 +26,10 @@ const App = () => {
     setYear(year)
   }
 
-  const filteredCosts = costsData.filter((cost) => cost.date.getFullYear() === +year)
+  useEffect(() => {
+    const filteredCosts = costsData.filter((cost) => cost.date.getFullYear() === +year)
+    setCosts(filteredCosts)
+  }, [costs, year])
 
   const diagramData = [
     { label: 'Jan', value: 0 },
@@ -43,7 +46,7 @@ const App = () => {
     { label: 'Dec', value: 0 },
   ]
 
-  for (const cost of filteredCosts) {
+  for (const cost of costs) {
     const costMonth = cost.date.getMonth()
     diagramData[costMonth].value += cost.amount
   }
@@ -51,8 +54,8 @@ const App = () => {
   return (
     <div className='App'>
       <CostsForm addCost={addCost} />
-      <Diagram costs={filteredCosts} diagramData={diagramData} />
-      <Costs costs={filteredCosts} filterCostsByYear={filterCostsByYear} year={year} />
+      <Diagram costs={costs} diagramData={diagramData} />
+      <Costs costs={costs} filterCostsByYear={filterCostsByYear} year={year} />
     </div>
   )
 }
